@@ -1,0 +1,34 @@
+{
+  "name": "ninja-proxy",
+  "version": "0.0.1",
+  "description": "simple and easy proxy.",
+  "bin": {
+    "micro-proxy": "./bin/ninja-proxy"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test:watch": "jest --watch",
+    "test": "jest"
+  },
+  "repository": "",
+  "author": "Joe Wilson",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "arg": "^1.0.0",
+    "micro": "^9.0.2",
+    "node-fetch": "^1.7.3",
+    "ws": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.1.0",
+    "jest": "^21.2.1",
+    "tempfile": "^2.0.0",
+    "test-listen": "^1.1.0"
+  }
+}
