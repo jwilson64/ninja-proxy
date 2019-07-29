@@ -12,22 +12,17 @@ const args = arg({
   '-h': '--help',
   '-r': '--rules-file',
   '-p': '--port',
-  '-H': '--hostname'
+  '-H': '--hostname',
 })
 
-const {
-  '--help': help,
-  '--rules-file': rulesFile,
-  '--port': port = 9000,
-  '--hostname': hostname = 'localhost'
-} = args
+const { '--help': help, '--rules-file': rulesFile, '--port': port = 9000, '--hostname': hostname = 'localhost' } = args
 
 if (help) {
   console.log(`
     Description
       Start a proxy server with path based rules.
     Usage
-      $ micro-proxy -r <rules.js> -p <port>
+      $ ninja-proxy -r <rules.js> -p <port>
     Options
       --rules-file, -r      A .json file which contains rules for the proxy
       --port, -p            A port number on which to start the application
@@ -38,14 +33,14 @@ if (help) {
 }
 
 if (!rulesFile) {
-  console.error(`> Start micro-proxy with --rules-file (-r) option\n`)
+  console.error(`> Start ninja-proxy with --rules-file (-r) option\n`)
   process.exit(1)
 }
 
 const rulesFilePath = resolve(process.cwd(), rulesFile)
 const { rules } = require(rulesFilePath)
 const proxy = buildProxy(rules)
-proxy.listen(port, hostname, (err) => {
+proxy.listen(port, hostname, err => {
   if (err) {
     throw err
   }
