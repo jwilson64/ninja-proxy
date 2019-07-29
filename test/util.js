@@ -19,14 +19,14 @@ const getInfoServer = () => {
       method,
       headers,
       url,
-      body
+      body,
     }
   })
 
   return server
 }
 
-exports.createInfoServer = async (port) => {
+exports.createInfoServer = async port => {
   const server = getInfoServer()
 
   await listen(server, port)
@@ -36,11 +36,11 @@ exports.createInfoServer = async (port) => {
     url: `http://localhost:${server.address().port}`,
     close: () => {
       server.close()
-    }
+    },
   }
 }
 
-exports.createWsServer = async (port) => {
+exports.createWsServer = async port => {
   const server = getInfoServer()
 
   const wss = new WebSocketServer({ server })
@@ -60,17 +60,18 @@ exports.createWsServer = async (port) => {
     close: () => {
       server.close()
       wss.close()
-    }
+    },
   }
 }
 
-exports.receiveWsMessageOnce = async (ws, message) => new Promise(resolve => {
-  ws.once('message', msg => {
-    if (msg === message) {
-      resolve(msg)
-    }
+exports.receiveWsMessageOnce = async (ws, message) =>
+  new Promise(resolve => {
+    ws.once('message', msg => {
+      if (msg === message) {
+        resolve(msg)
+      }
+    })
   })
-})
 
 exports.fetchProxy = async (proxy, path, options) => {
   const res = await fetch(`http://localhost:${proxy.address().port}${path}`, options)
@@ -84,21 +85,24 @@ exports.fetchProxy = async (proxy, path, options) => {
 
 exports.startProxyCLI = async (rules, args = []) => {
   const configFile = tempfile('.json')
-  writeFileSync(configFile, JSON.stringify({
-    rules
-  }))
+  writeFileSync(
+    configFile,
+    JSON.stringify({
+      rules,
+    }),
+  )
 
   const proxy = spawn('./bin/ninja-proxy', ['-r', configFile, ...args])
   proxy.stderr.pipe(process.stderr)
 
   return new Promise((resolve, reject) => {
-    proxy.stdout.on('data', (d) => {
+    proxy.stdout.on('data', d => {
       if (/Ready/.test(d.toString())) {
         resolve({
           close: () => {
             proxy.kill()
             unlinkSync(configFile)
-          }
+          },
         })
       }
     })

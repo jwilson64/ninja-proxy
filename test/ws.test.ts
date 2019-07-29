@@ -1,8 +1,6 @@
-
 /* global describe, it, expect */
-
-const WebSocket = require('ws')
-const listen = require('test-listen')
+import WebSocket from 'ws'
+import listen from 'test-listen'
 
 const { createWsServer, receiveWsMessageOnce } = require('./util')
 const createProxy = require('../')
@@ -11,9 +9,7 @@ describe('Basic WS Operations', () => {
   describe('ws', () => {
     it('should receive websocket messages', async () => {
       const s1 = await createWsServer()
-      const proxy = createProxy([
-        { pathname: '/ws', dest: s1.url }
-      ])
+      const proxy = createProxy([{ pathname: '/ws', dest: s1.url }])
 
       await listen(proxy)
 
@@ -28,9 +24,7 @@ describe('Basic WS Operations', () => {
 
     it('should send and receive websocket messages', async () => {
       const s1 = await createWsServer()
-      const proxy = createProxy([
-        { pathname: '/ws', dest: s1.url }
-      ])
+      const proxy = createProxy([{ pathname: '/ws', dest: s1.url }])
 
       await listen(proxy)
 

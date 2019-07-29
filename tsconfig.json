@@ -2,6 +2,6 @@
   "compilerOptions": {
     "types": ["node"]
   },
-  "include": ["./lib/**/*.ts"],
+  "include": ["./lib/**/*"],
   "exclude": ["node_modules"]
 }

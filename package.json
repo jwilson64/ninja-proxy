@@ -25,12 +25,14 @@
     "node": ">=8.10.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.15",
     "@types/node": "^12.6.8",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.1.0",
-    "jest": "24.8.0",
+    "jest": "^24.8.0",
     "tempfile": "^2.0.0",
     "test-listen": "^1.1.0",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   }
 }
