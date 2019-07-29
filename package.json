@@ -28,7 +28,7 @@
     "@types/node": "^12.6.8",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.1.0",
-    "jest": "^21.2.1",
+    "jest": "24.8.0",
     "tempfile": "^2.0.0",
     "test-listen": "^1.1.0",
     "typescript": "^3.5.3"
