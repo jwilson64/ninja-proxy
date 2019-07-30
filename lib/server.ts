@@ -1,11 +1,10 @@
 import micro from 'micro'
-import { requestHandler } from './handlers'
-import getDest from './functions'
+import { requestHandler, destinationHandler } from './handlers'
 
 module.exports = function(lintedRules) {
   const server = micro(async (req, res) => {
     try {
-      const dest = getDest(req, lintedRules)
+      const dest = destinationHandler(req, lintedRules)
 
       if (!dest) {
         res.writeHead(404)
