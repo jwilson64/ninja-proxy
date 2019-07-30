@@ -5,7 +5,7 @@
   "bin": {
     "micro-proxy": "./bin/ninja-proxy"
   },
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "lint": "eslint .",
     "test:watch": "jest --watch",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.8",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.1.0",

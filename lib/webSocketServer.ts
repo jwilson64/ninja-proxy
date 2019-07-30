@@ -1,14 +1,14 @@
 /**
  * From Micro-proxy
  */
-const WebSocket = require('ws')
-const { parse } = require('url')
-const getDest = require('./functions')
+import * as WebSocket from 'ws'
+import { parse } from 'url'
+import { destinationHandler } from './handlers'
 
-module.exports = (server, lintedRules) => {
+const webSocketServer = (server, lintedRules) => {
   const wss = new WebSocket.Server({ server })
   wss.on('connection', (ws, req) => {
-    const dest = getDest(req, lintedRules)
+    const dest = destinationHandler(req, lintedRules)
 
     if (!dest) {
       ws.close()
@@ -64,3 +64,5 @@ function proxyWs(ws, req, dest) {
   ws.on('error', onError)
   destWs.on('error', onError)
 }
+
+export default webSocketServer
