@@ -26,8 +26,6 @@ describe('Basic WS Operations', () => {
       const proxy = createProxy([{ pathname: '/ws', destination: s1.url }])
       const listener = await listen(proxy)
 
-      console.log(`ws://localhost:${proxy.address().port}/ws`)
-
       const ws = new WebSocket(`ws://localhost:${proxy.address().port}/ws`, [], {})
 
       const msg1 = await receiveWsMessageOnce(ws, 'fingerprint')

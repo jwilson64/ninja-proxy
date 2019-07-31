@@ -7,25 +7,22 @@ import { destinationHandler } from './handlers'
 
 const webSocketServer = (server, lintedRules) => {
   const wss = new WebSocket.Server({ server })
-  wss.on('connection', (ws, req) => {
-    const dest = destinationHandler(req, lintedRules)
+  wss.on('connection', (ws: any, req: any) => {
+    const dest: string = destinationHandler(req, lintedRules)
 
     if (!dest) {
       ws.close()
       return
     }
-
     proxyWs(ws, req, dest)
   })
   return server
 }
 
-function proxyWs(ws, req, dest) {
+function proxyWs(ws: any, req: any, dest: string) {
   const destUrlObject = parse(dest)
   const newUrl = `ws://${destUrlObject.host}${req.url}`
-
   const destWs = new WebSocket(newUrl)
-
   // util functions
   const incomingHandler = message => {
     destWs.send(message)
