@@ -1,4 +1,4 @@
-export class Rule {
+export interface Rule {
   pathname: string
   destination: string
 
