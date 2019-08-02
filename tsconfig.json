@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "types": ["node"]
+    "types": ["node", "jest", "mocha"],
+    "outDir": "bin/client"
   },
-  "include": ["./lib/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["./**/*"],
+  "exclude": ["node_modules", "**/*.test.ts"]
 }

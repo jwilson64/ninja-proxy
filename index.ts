@@ -1,9 +1,10 @@
-const lintRules = require('./lib/lint-rules')
-const createServer = require('./lib/server')
-const configureSocketServer = require('./lib/webSocketServer')
+import { lintRules } from './lib/rules'
+import { createServer } from './lib/server'
+import configureSocketServer from './lib/webSocketServer'
+import { Rule } from './lib/rules/rule'
 
-module.exports = rules => {
-  const lintedRules = lintRules(rules).map(({ pathname, pathnameRe, method, dest, rewrite }) => {
+export const createProxy = (rules: Rule[]) => {
+  const lintedRules = lintRules(rules).map(({ pathname, pathnameRe, method, destination, rewrite }) => {
     let methods = null
     if (method) {
       methods = method.reduce((final, c) => {
@@ -15,13 +16,14 @@ module.exports = rules => {
     return {
       pathname,
       pathnameRegexp: new RegExp(pathnameRe || pathname || '.*'),
-      dest,
+      destination,
       rewrite,
       methods,
     }
   })
 
   const server = createServer(lintedRules)
-
   return configureSocketServer(server, lintedRules)
 }
+
+export default createProxy

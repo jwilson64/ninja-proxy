@@ -1,12 +1,12 @@
 import fetch from 'node-fetch'
 import { resolve, URL } from 'url'
 
-export const requestHandler = async (req: any, res: any, dest: string): Promise<void> => {
-  const tempUrl: string = resolve(dest, req.url)
+export const requestHandler = async (req: any, res: any, destination: string): Promise<void> => {
+  const tempUrl: string = resolve(destination, req.url)
   const cleanUrl: URL = new URL(tempUrl)
-  const newUrl: string = resolve(dest, `${cleanUrl.pathname}${cleanUrl.search}`)
-  const url: URL = new URL(dest)
-  const proxyRes: fetch = await fetch(newUrl, {
+  const newUrl: string = resolve(destination, `${cleanUrl.pathname}${cleanUrl.search}`)
+  const url: URL = new URL(destination)
+  const proxyRes = await fetch(newUrl, {
     method: req.method,
     headers: {
       ...req.headers,

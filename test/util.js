@@ -30,7 +30,6 @@ exports.createInfoServer = async port => {
   const server = getInfoServer()
 
   await listen(server, port)
-
   return {
     port: server.address().port,
     url: `http://localhost:${server.address().port}`,
@@ -75,11 +74,12 @@ exports.receiveWsMessageOnce = async (ws, message) =>
 
 exports.fetchProxy = async (proxy, path, options) => {
   const res = await fetch(`http://localhost:${proxy.address().port}${path}`, options)
+
   if (res.status !== 200) {
     return { res }
   }
-
   const data = await res.json()
+
   return { data, res }
 }
 

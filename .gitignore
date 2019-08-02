@@ -5,6 +5,7 @@ package-lock.json
 # logs
 *.log
 
+bin/client
 # coverage
 .nyc_output
 coverage

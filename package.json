@@ -5,11 +5,12 @@
   "bin": {
     "micro-proxy": "./bin/ninja-proxy"
   },
-  "main": "index.js",
+  "main": "./bin/client/index.js",
   "scripts": {
     "lint": "eslint .",
-    "test:watch": "jest --watch",
-    "test": "jest"
+    "build": "tsc --skipLibCheck",
+    "build:watch": "tsc --skipLibCheck -w",
+    "test": "npm run build && jest"
   },
   "repository": "",
   "author": "Joe Wilson",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.8",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.1.0",

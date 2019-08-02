@@ -1,7 +1,10 @@
-export const destinationHandler = (req, lintedRules = []) => {
-  for (const { pathnameRegexp, methods, dest } of lintedRules) {
-    if (pathnameRegexp.test(req.url) && (!methods || methods[req.method.toLowerCase()])) {
-      return dest
+import { Rule } from '../rules/rule'
+
+export const destinationHandler = (req: any, lintedRules: Rule[]): string => {
+  if (lintedRules.length) {
+    for (const { pathnameRegexp, methods, destination } of lintedRules) {
+      if (pathnameRegexp.test(req.url) && (!methods || methods[req.method.toLowerCase()])) return destination
     }
   }
+  return undefined
 }
