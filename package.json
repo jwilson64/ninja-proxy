@@ -8,9 +8,9 @@
   "main": "index.ts",
   "scripts": {
     "lint": "eslint .",
-    "build": "tsc index.ts",
-    "test:watch": "jest --watch",
-    "test": "jest"
+    "build": "tsc --skipLibCheck",
+    "build:watch": "tsc --skipLibCheck -w",
+    "test": "npm run build && jest"
   },
   "repository": "",
   "author": "Joe Wilson",

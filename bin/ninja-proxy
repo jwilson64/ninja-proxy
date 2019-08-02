@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const arg = require('arg')
-const buildProxy = require('../')
+const { createProxy } = require('./client')
 const { resolve } = require('path')
 
 const args = arg({
@@ -39,7 +39,7 @@ if (!rulesFile) {
 
 const rulesFilePath = resolve(process.cwd(), rulesFile)
 const { rules } = require(rulesFilePath)
-const proxy = buildProxy(rules)
+const proxy = createProxy(rules)
 proxy.listen(port, hostname, err => {
   if (err) {
     throw err
