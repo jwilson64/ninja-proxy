@@ -4,17 +4,18 @@
 import * as WebSocket from 'ws'
 import { parse } from 'url'
 import { destinationHandler } from './handlers'
+import { Rule } from './rules/rule'
 
 const webSocketServer = (server, lintedRules) => {
   const wss = new WebSocket.Server({ server })
   wss.on('connection', (ws: any, req: any) => {
-    const dest: string = destinationHandler(req, lintedRules)
+    const rule: Rule = destinationHandler(req, lintedRules)
 
-    if (!dest) {
+    if (!rule) {
       ws.close()
       return
     }
-    proxyWs(ws, req, dest)
+    proxyWs(ws, req, rule.destination)
   })
   return server
 }

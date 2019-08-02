@@ -1,16 +1,17 @@
 import * as micro from 'micro'
 import { requestHandler, destinationHandler } from './handlers'
+import { Rule } from './rules/rule'
 
 export function createServer(lintedRules) {
   const server = micro(async (req, res) => {
     try {
-      const destination = destinationHandler(req, lintedRules)
-      if (!destination) {
+      const rule: Rule = destinationHandler(req, lintedRules)
+      if (!rule) {
         res.writeHead(404)
         res.end('404 - Not Found')
         return
       }
-      await requestHandler(req, res, destination)
+      await requestHandler(req, res, rule)
     } catch (err) {
       /* eslint-disable */
       console.error(err.stack)

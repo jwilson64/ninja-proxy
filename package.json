@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "build": "tsc --skipLibCheck",
     "build:watch": "tsc --skipLibCheck -w",
-    "test": "npm run build && jest"
+    "test": "npm run build && jest",
+    "test:watch": "jest --watch"
   },
   "repository": "",
   "author": "Joe Wilson",

@@ -116,6 +116,20 @@ describe('Basic Proxy Operations', () => {
     })
   })
 
+  describe('rewrite', () => {
+    it('should rewrite /home to /', async () => {
+      const s1 = await createInfoServer()
+      const proxy = createProxy([{ pathname: '/home', destination: s1.url, rewrite: '/' }])
+      await listen(proxy)
+
+      const { data } = await fetchProxy(proxy, '/home')
+      expect(data.url).toBe('/')
+
+      proxy.close()
+      s1.close()
+    })
+  })
+
   describe('other', () => {
     it('should proxy the POST body', async () => {
       const s1 = await createInfoServer()

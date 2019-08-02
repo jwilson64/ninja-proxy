@@ -1,8 +1,10 @@
 import fetch from 'node-fetch'
 import { resolve, URL } from 'url'
+import { Rule } from '../rules/rule'
 
-export const requestHandler = async (req: any, res: any, destination: string): Promise<void> => {
-  const tempUrl: string = resolve(destination, req.url)
+export const requestHandler = async (req: any, res: any, rule: Rule): Promise<void> => {
+  const { destination, rewrite } = rule
+  const tempUrl: string = resolve(destination, rewrite || req.url)
   const cleanUrl: URL = new URL(tempUrl)
   const newUrl: string = resolve(destination, `${cleanUrl.pathname}${cleanUrl.search}`)
   const url: URL = new URL(destination)
