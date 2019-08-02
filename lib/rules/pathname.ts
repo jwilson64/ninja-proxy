@@ -18,7 +18,6 @@ export function lintAndFixPathname(rule: Rule): Rule {
     pathnameRe = pathnameRe.replace(/\*\*/g, '(.*)') // ** -> .*
     pathnameRe = pathnameRe.replace(/([^.])(\*)/g, '$1([^/]*)') // * -> .* within path separators
     pathnameRe = pathnameRe.replace('?', '.') // ? -> .
-
     rule.pathnameRe = `^${pathnameRe}$`
   }
   return rule

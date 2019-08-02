@@ -8,6 +8,7 @@
   "main": "index.ts",
   "scripts": {
     "lint": "eslint .",
+    "build": "tsc index.ts",
     "test:watch": "jest --watch",
     "test": "jest"
   },

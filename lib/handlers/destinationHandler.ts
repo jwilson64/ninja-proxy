@@ -1,12 +1,10 @@
 import { Rule } from '../rules/rule'
 
-export const destinationHandler = (req: any, lintedRules: Rule[]) => {
+export const destinationHandler = (req: any, lintedRules: Rule[]): string => {
   if (lintedRules.length) {
-    const rule = lintedRules.find(lintedRule => {
-      const regex = new RegExp(lintedRule.pathnameRe)
-      return regex.test(req.url) && (!lintedRule.methods || lintedRule.methods[req.method.toLowerCase])
-    })
-    return rule.destination
+    for (const { pathnameRegexp, methods, destination } of lintedRules) {
+      if (pathnameRegexp.test(req.url) && (!methods || methods[req.method.toLowerCase()])) return destination
+    }
   }
-  return null
+  return undefined
 }

@@ -198,7 +198,7 @@ describe('Basic Proxy Operations', () => {
       const proxy = createProxy([{ pathname: '/blog/**', destination: `http://localhost:${s1.address().port}` }])
       await listen(proxy)
 
-      const res = await fetch(`http://localhost:${proxy.address().port}/blog/hello`)
+      const res: any = await fetch(`http://localhost:${proxy.address().port}/blog/hello`, undefined)
       expect(res.headers.get('output-header')).toBe(header)
 
       proxy.close()

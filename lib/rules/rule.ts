@@ -4,6 +4,7 @@ export class Rule {
 
   pathnameRegexp?: RegExp
   pathnameRe?: string
-  method?: string[]
+  method?: string[] | string
+  methods?: string[]
   rewrite?: string
 }
