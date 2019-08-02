@@ -5,7 +5,7 @@
   "bin": {
     "micro-proxy": "./bin/ninja-proxy"
   },
-  "main": "index.ts",
+  "main": "./bin/client/index.js",
   "scripts": {
     "lint": "eslint .",
     "build": "tsc --skipLibCheck",
