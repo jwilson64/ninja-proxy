@@ -1,4 +1,4 @@
-const ALLOWED_KEYS = new Set(['method', 'pathname', 'destination', 'rewrite'])
+const ALLOWED_KEYS = new Set(['method', 'pathname', 'destination', 'rewrite', 'headers'])
 
 export function lintKeys(rule) {
   for (const key of Object.keys(rule)) {

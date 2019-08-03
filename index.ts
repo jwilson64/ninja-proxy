@@ -4,7 +4,7 @@ import configureSocketServer from './lib/webSocketServer'
 import { Rule } from './lib/rules/rule'
 
 export const createProxy = (rules: Rule[]) => {
-  const lintedRules = lintRules(rules).map(({ pathname, pathnameRe, method, destination, rewrite }) => {
+  const lintedRules = lintRules(rules).map(({ pathname, pathnameRe, method, destination, rewrite, headers }) => {
     let methods = null
     if (method) {
       methods = method.reduce((final, c) => {
@@ -19,6 +19,7 @@ export const createProxy = (rules: Rule[]) => {
       destination,
       rewrite,
       methods,
+      headers,
     }
   })
 

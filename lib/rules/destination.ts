@@ -1,10 +1,6 @@
 import { parse } from 'url'
 import { Rule } from './rule'
 
-interface DestinationError extends Error {
-  statusCode: number
-}
-
 export function lintDest(rule: Rule): Rule {
   if (!rule.destination) {
     const err: Error = new Error(`Missing destination ${JSON.stringify(rule)}`)
