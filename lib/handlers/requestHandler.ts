@@ -12,6 +12,7 @@ export const requestHandler = async (req: any, res: any, rule: Rule): Promise<vo
     method: req.method,
     headers: {
       ...req.headers,
+      ...rule.headers,
       host: url.host,
     },
     body: req,

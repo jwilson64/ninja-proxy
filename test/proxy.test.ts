@@ -130,6 +130,32 @@ describe('Basic Proxy Operations', () => {
     })
   })
 
+  describe('headers', () => {
+    it('should add headers from the rule to the request', async () => {
+      const s1 = await createInfoServer()
+      const proxy = createProxy([{ pathname: '/home', destination: s1.url, headers: { mytoken: 'test token' } }])
+      await listen(proxy)
+
+      const { data } = await fetchProxy(proxy, '/home')
+      expect(data.headers.mytoken).toBe('test token')
+
+      proxy.close()
+      s1.close()
+    })
+
+    it('should overwrite a default header. */* -> application/json', async () => {
+      const s1 = await createInfoServer()
+      const proxy = createProxy([{ pathname: '/home', destination: s1.url, headers: { accept: 'application/json' } }])
+      await listen(proxy)
+
+      const { data } = await fetchProxy(proxy, '/home')
+      expect(data.headers.accept).toBe('application/json')
+
+      proxy.close()
+      s1.close()
+    })
+  })
+
   describe('other', () => {
     it('should proxy the POST body', async () => {
       const s1 = await createInfoServer()

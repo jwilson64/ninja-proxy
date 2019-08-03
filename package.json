@@ -11,7 +11,7 @@
     "build": "tsc --skipLibCheck",
     "build:watch": "tsc --skipLibCheck -w",
     "test": "npm run build && jest",
-    "test:watch": "jest --watch"
+    "test:watch": "npm run build:watch & jest --watch"
   },
   "repository": "",
   "author": "Joe Wilson",
