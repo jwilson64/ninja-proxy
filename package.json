@@ -1,6 +1,6 @@
 {
   "name": "ninja-proxy",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "simple and easy proxy.",
   "bin": {
     "ninja-proxy": "./bin/ninja-proxy"
