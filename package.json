@@ -1,11 +1,11 @@
 {
   "name": "ninja-proxy",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "simple and easy proxy.",
   "bin": {
     "micro-proxy": "./bin/ninja-proxy"
   },
-  "main": "./bin/client/index.js",
+  "main": "./build/index.js",
   "scripts": {
     "lint": "eslint .",
     "build": "tsc --skipLibCheck",
@@ -13,7 +13,10 @@
     "test": "npm run build && jest",
     "test:watch": "npm run build:watch & jest --watch"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jwilson64/ninja-proxy"
+  },
   "author": "Joe Wilson",
   "license": "MIT",
   "private": false,
