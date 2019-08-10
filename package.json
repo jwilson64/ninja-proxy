@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "simple and easy proxy.",
   "bin": {
-    "micro-proxy": "./bin/ninja-proxy"
+    "ninja-proxy": "./bin/ninja-proxy"
   },
   "main": "./build/index.js",
   "scripts": {
