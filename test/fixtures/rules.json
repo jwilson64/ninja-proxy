@@ -1,5 +1,3 @@
 {
-    "rules": [
-      { "pathname": "/blog/**", "dest": "http://localhost:6070" }
-    ]
-  }
+  "rules": [{ "pathname": "/blog/**", "destination": "http://localhost:6070" }]
+}

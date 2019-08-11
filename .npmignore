@@ -1,0 +1,10 @@
+lib/**/*.ts
+test
+examples
+.vscode
+.eslintignore
+.eslintrc.json
+jest.config.js
+tsconfig.json
+index.ts
+.prettierrc

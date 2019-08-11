@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const arg = require('arg')
-const { createProxy } = require('./client')
+const { createProxy } = require('../build/index')
 const { resolve } = require('path')
 
 const args = arg({

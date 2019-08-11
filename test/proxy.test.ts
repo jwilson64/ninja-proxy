@@ -4,7 +4,7 @@ import { createInfoServer, fetchProxy } from './util'
 import * as micro from 'micro'
 import * as listen from 'test-listen'
 import * as fetch from 'node-fetch'
-import createProxy from '../'
+import createProxy from '../index'
 
 describe('Basic Proxy Operations', () => {
   describe('rules', () => {
@@ -55,7 +55,7 @@ describe('Basic Proxy Operations', () => {
       const proxy = createProxy([{ pathname: '/abc', destination: 'http://localhost' }])
       await listen(proxy)
 
-      const { res } = await fetchProxy(proxy, '/blog/hello')
+      const { res } = (await fetchProxy(proxy, '/blog/hello')) as any
       expect(res.status).toBe(404)
 
       proxy.close()
@@ -96,7 +96,7 @@ describe('Basic Proxy Operations', () => {
       const proxy = createProxy([{ pathname: '/blog/**', method: ['GET', 'POST'], destination: s1.url }])
       await listen(proxy)
 
-      const { res } = await fetchProxy(proxy, '/blog/hello', { method: 'OPTIONS' })
+      const { res } = (await fetchProxy(proxy, '/blog/hello', { method: 'OPTIONS' })) as any
       expect(res.status).toBe(404)
 
       proxy.close()
@@ -217,7 +217,7 @@ describe('Basic Proxy Operations', () => {
       const proxy = createProxy([{ pathname: '/**', destination: s1.url }])
       await listen(proxy)
 
-      const { res } = await fetchProxy(proxy, '/404')
+      const { res } = (await fetchProxy(proxy, '/404')) as any
 
       expect(res.status).toBe(404)
 

@@ -1,11 +1,12 @@
 {
   "name": "ninja-proxy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "simple and easy proxy.",
   "bin": {
     "ninja-proxy": "./bin/ninja-proxy"
   },
-  "main": "./build/index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "lint": "eslint .",
     "build": "tsc --skipLibCheck",

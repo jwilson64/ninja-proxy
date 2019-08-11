@@ -1,4 +1,4 @@
-import { lintRules } from './lib/rules'
+import { lintRules } from './lib/rules/index'
 import { createServer } from './lib/server'
 import configureSocketServer from './lib/webSocketServer'
 import { Rule } from './lib/rules/rule'

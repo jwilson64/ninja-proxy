@@ -1,5 +1,5 @@
 import * as micro from 'micro'
-import { requestHandler, destinationHandler } from './handlers'
+import { requestHandler, destinationHandler } from './handlers/index'
 import { Rule } from './rules/rule'
 
 export function createServer(lintedRules) {
