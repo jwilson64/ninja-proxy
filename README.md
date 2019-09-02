@@ -54,10 +54,11 @@ proxy.listen(9000, (err) => {
 
 ## Available Options
 
-| Option      | Required | Description                                                                      | Example                               |
-| ----------- | -------- | -------------------------------------------------------------------------------- | ------------------------------------- |
-| pathname    | yes      | The path to listen for                                                           | `/home`                               |
-| destination | yes      | The server your traffic is going to                                              | `http://localhost:3000`               |
-| rewrite     | no       | Rewrite your path to specific path on the server. Example: `/home` to `/`        | `/`                                   |
-| headers     | no       | a JSON element of extra headers to pass along                                    | `{ x-forwarded-host: 'mydomain.com'}` |
-| methods     | no       | array of HTTP methods that may be used on this endpoint. If blank all are valid. | `['GET', 'POST', 'PUT']`              |
+| Option      | Required   | Description                                                                      | Example                               |
+| ----------- | ---------- | -------------------------------------------------------------------------------- | ------------------------------------- |
+| pathname    | yes        | The path to listen for                                                           | `/home`                               |
+| destination | yes and no | Required if not a stub. The server your traffic is going to                      | `http://localhost:3000`               |
+| rewrite     | no         | Rewrite your path to specific path on the server. Example: `/home` to `/`        | `/`                                   |
+| headers     | no         | a JSON element of extra headers to pass along                                    | `{ x-forwarded-host: 'mydomain.com'}` |
+| methods     | no         | array of HTTP methods that may be used on this endpoint. If blank all are valid  | `['GET', 'POST', 'PUT']`              |
+| stub        | yes and no | Required if it is a stub. This is JSON data to return if you want to mock an API | `{"data": "test"}`                    |
