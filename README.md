@@ -54,9 +54,10 @@ proxy.listen(9000, (err) => {
 
 ## Available Options
 
-| Option      | Required | Description                                                               | Example                               |
-| ----------- | -------- | ------------------------------------------------------------------------- | ------------------------------------- |
-| pathname    | yes      | The path to listen for                                                    | `/home`                               |
-| destination | yes      | The server your traffic is going to                                       | `http://localhost:3000`               |
-| rewrite     | no       | Rewrite your path to specific path on the server. Example: `/home` to `/` | `/`                                   |
-| headers     | no       | a JSON element of extra headers to pass along                             | `{ x-forwarded-host: 'mydomain.com'}` |
+| Option      | Required | Description                                                                      | Example                               |
+| ----------- | -------- | -------------------------------------------------------------------------------- | ------------------------------------- |
+| pathname    | yes      | The path to listen for                                                           | `/home`                               |
+| destination | yes      | The server your traffic is going to                                              | `http://localhost:3000`               |
+| rewrite     | no       | Rewrite your path to specific path on the server. Example: `/home` to `/`        | `/`                                   |
+| headers     | no       | a JSON element of extra headers to pass along                                    | `{ x-forwarded-host: 'mydomain.com'}` |
+| methods     | no       | array of HTTP methods that may be used on this endpoint. If blank all are valid. | `['GET', 'POST', 'PUT']`              |
