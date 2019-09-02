@@ -15,7 +15,7 @@ export const createProxy = (rules: Rule[]) => {
 
     return {
       pathname,
-      pathnameRegexp: new RegExp(pathnameRe || pathname || '.*'),
+      pathnameRe,
       destination,
       rewrite,
       methods: methodObj,

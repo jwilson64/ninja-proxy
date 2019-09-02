@@ -2,8 +2,7 @@ export interface Rule {
   pathname: string
   destination: string
 
-  pathnameRegexp?: RegExp
-  pathnameRe?: string
+  pathnameRe?: RegExp
 
   methods?: string[]
 
