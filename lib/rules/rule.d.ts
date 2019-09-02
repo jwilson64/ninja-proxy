@@ -1,10 +1,9 @@
 export interface Rule {
   pathname: string
-  destination: string
-  pathnameRegexp?: RegExp
-  pathnameRe?: string
-  method?: string[] | string
+  destination?: string
+  pathnameRe?: RegExp
   methods?: string[]
   rewrite?: string
   headers?: any
+  stub?: any
 }

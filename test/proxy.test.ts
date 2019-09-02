@@ -5,6 +5,7 @@ import * as micro from 'micro'
 import * as listen from 'test-listen'
 import * as fetch from 'node-fetch'
 import createProxy from '../index'
+import * as stub from './fixtures/testStub.json'
 
 describe('Basic Proxy Operations', () => {
   describe('rules', () => {
@@ -81,7 +82,7 @@ describe('Basic Proxy Operations', () => {
   describe('methods', () => {
     it('should proxy for a method in the list', async () => {
       const s1 = await createInfoServer()
-      const proxy = createProxy([{ pathname: '/blog/**', method: ['GET', 'POST'], destination: s1.url }])
+      const proxy = createProxy([{ pathname: '/blog/**', methods: ['GET', 'POST'], destination: s1.url }])
       await listen(proxy)
 
       const { data } = await fetchProxy(proxy, '/blog/hello')
@@ -93,7 +94,7 @@ describe('Basic Proxy Operations', () => {
 
     it('should not proxy for a method which is not in the list', async () => {
       const s1 = await createInfoServer()
-      const proxy = createProxy([{ pathname: '/blog/**', method: ['GET', 'POST'], destination: s1.url }])
+      const proxy = createProxy([{ pathname: '/blog/**', methods: ['GET', 'POST'], destination: s1.url }])
       await listen(proxy)
 
       const { res } = (await fetchProxy(proxy, '/blog/hello', { method: 'OPTIONS' })) as any
@@ -150,6 +151,20 @@ describe('Basic Proxy Operations', () => {
 
       const { data } = await fetchProxy(proxy, '/home')
       expect(data.headers.accept).toBe('application/json')
+
+      proxy.close()
+      s1.close()
+    })
+  })
+
+  describe('stub', () => {
+    it('should return stub data when asked', async () => {
+      const s1 = await createInfoServer()
+      const proxy = createProxy([{ pathname: '/home', stub, headers: { accept: 'application/json' } }])
+      await listen(proxy)
+
+      const { data } = await fetchProxy(proxy, '/home')
+      expect(data).toEqual(stub)
 
       proxy.close()
       s1.close()

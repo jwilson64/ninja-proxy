@@ -3,6 +3,7 @@ import { Rule } from './rule'
 
 export function lintAndFixPathname(rule: Rule): Rule {
   if (!rule.pathname) {
+    rule.pathnameRe = new RegExp('.*')
     return rule
   }
   // Strip down possible query and stuff
@@ -18,7 +19,9 @@ export function lintAndFixPathname(rule: Rule): Rule {
     pathnameRe = pathnameRe.replace(/\*\*/g, '(.*)') // ** -> .*
     pathnameRe = pathnameRe.replace(/([^.])(\*)/g, '$1([^/]*)') // * -> .* within path separators
     pathnameRe = pathnameRe.replace('?', '.') // ? -> .
-    rule.pathnameRe = `^${pathnameRe}$`
+    rule.pathnameRe = new RegExp(`^${pathnameRe}$`)
+  } else {
+    rule.pathnameRe = new RegExp(rule.pathname)
   }
   return rule
 }

@@ -4,22 +4,18 @@ import configureSocketServer from './lib/webSocketServer'
 import { Rule } from './lib/rules/rule'
 
 export const createProxy = (rules: Rule[]) => {
-  const lintedRules = lintRules(rules).map(({ pathname, pathnameRe, method, destination, rewrite, headers }) => {
-    let methods = null
-    if (method) {
-      methods = method.reduce((final, c) => {
+  const lintedRules = lintRules(rules).map(({ methods, ...properties }) => {
+    let methodObj = null
+    if (methods) {
+      methodObj = methods.reduce((final, c) => {
         final[c.toLowerCase()] = true
         return final
       }, {})
     }
 
     return {
-      pathname,
-      pathnameRegexp: new RegExp(pathnameRe || pathname || '.*'),
-      destination,
-      rewrite,
-      methods,
-      headers,
+      ...properties,
+      methods: methodObj,
     }
   })
 

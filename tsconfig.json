@@ -3,7 +3,8 @@
     "types": ["node", "jest", "mocha"],
     "outDir": "build",
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "resolveJsonModule": true
   },
   "files": ["index.ts"],
   "include": ["./lib"],
