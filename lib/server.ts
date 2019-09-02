@@ -15,8 +15,6 @@ export function createServer(lintedRules) {
     } catch (err) {
       /* eslint-disable */
       console.error(err.stack)
-      /* eslint-disable */
-
       res.end()
     }
   })
