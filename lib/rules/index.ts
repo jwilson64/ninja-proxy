@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { lintKeys } from './keys'
 import { lintAndFixMethods } from './methods'
 import { lintAndFixPathname } from './pathname'
 import { lintDest } from './destination'
@@ -15,9 +14,6 @@ export function lintRules(rules) {
   }
 
   for (let rule of rules) {
-    // Don't let in unwanted entries
-    lintKeys(rule)
-
     // Make sure methods is an array etc.
     rule = lintAndFixMethods(rule)
     rule = lintDest(rule)
