@@ -81,7 +81,7 @@ describe('Basic Proxy Operations', () => {
   describe('methods', () => {
     it('should proxy for a method in the list', async () => {
       const s1 = await createInfoServer()
-      const proxy = createProxy([{ pathname: '/blog/**', method: ['GET', 'POST'], destination: s1.url }])
+      const proxy = createProxy([{ pathname: '/blog/**', methods: ['GET', 'POST'], destination: s1.url }])
       await listen(proxy)
 
       const { data } = await fetchProxy(proxy, '/blog/hello')
@@ -93,7 +93,7 @@ describe('Basic Proxy Operations', () => {
 
     it('should not proxy for a method which is not in the list', async () => {
       const s1 = await createInfoServer()
-      const proxy = createProxy([{ pathname: '/blog/**', method: ['GET', 'POST'], destination: s1.url }])
+      const proxy = createProxy([{ pathname: '/blog/**', methods: ['GET', 'POST'], destination: s1.url }])
       await listen(proxy)
 
       const { res } = (await fetchProxy(proxy, '/blog/hello', { method: 'OPTIONS' })) as any
