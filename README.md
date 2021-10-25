@@ -14,9 +14,9 @@ Firstly, install the package:
 
 Then add following rules to a filename called rules.json:
 
-```
+```json
 {
-  rules: [
+  "rules": [
     { "pathname": "/home", "destination": "http://localhost:3000", "rewrite": "/" },
     { "pathname": "/", "destination": "http://localhost:3000" }
   ]
@@ -38,7 +38,7 @@ You can run the proxy programmatically inside your codebase. For that, add ninja
 
 Then create the proxy server like this:
 
-```
+```js
 const { createProxy } = require('ninja-proxy')
 const proxy = createProxy([
   { "pathname": "/", "destination": "http://localhost:3000" }
